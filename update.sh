@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 filename="runtimes.txt"
 branch_name=$(date +%Y%m%d-%H%M)
 
