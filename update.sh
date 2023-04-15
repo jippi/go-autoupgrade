@@ -8,7 +8,7 @@ fi
 # extract go runtimes
 jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee runtimes.txt
 
-if git diff-index --quiet HEAD --
+if git diff-index HEAD --
 then
     echo "no changes, good"
     exit 1
@@ -21,7 +21,7 @@ git commit \
 
 git push \
     -u origin \
-    $(date +%Y%m%d-%H%M)
+    master:$(date +%Y%m%d-%H%M)
     -o merge_request.create \
     -o merge_request.merge_when_pipeline_succeeds \
     -o merge_request.remove_source_branch \
