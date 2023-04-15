@@ -8,7 +8,7 @@ fi
 # extract go runtimes
 jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee runtimes.txt
 
-if git diff-index HEAD --
+if git diff-index --quiet HEAD --
 then
     echo "no changes, good"
     exit 1
