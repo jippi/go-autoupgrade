@@ -16,11 +16,14 @@ echo "=> Generate runtimes.txt"
 jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee runtimes.txt
 
 echo "=> Check for updates"
-if git diff-index --quiet HEAD --
+if git diff-index --quiet HEAD runtimes.txt
 then
     echo "no changes, good"
     exit 1
 fi
+
+echo "=> Detected change!"
+git diff runtimes.txt
 
 echo "=> Commit changes"
 git commit \
