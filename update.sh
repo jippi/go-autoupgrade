@@ -33,6 +33,7 @@ git commit \
     -m "update go versions" \
     $filename
 
+# https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests
 echo "=> Push changes"
 git push \
     -f \
