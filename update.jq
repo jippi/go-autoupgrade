@@ -90,19 +90,19 @@ def to_semver:
     | to_semver
 
     # remove releases older than configured
-    | select(.release_group >= ($input.minimum_release_group | to_semver).release_group)
+    | select(.release_group >= ($config.minimum_release_group | to_semver).release_group)
 ]
 
 # put all (X.Y) releases are in the same slice
 | group_by(.release_group)
 
 # select N most recent releases per group
-| map(.[:$input.number_of_releases_per_group])
+| map(.[:$config.number_of_releases_per_group])
 
 # merge additional releases from config file
 | . + [
     (
-        $input.additional_releases
+        $config.additional_releases
         | map(to_semver)
     )
 ]
@@ -110,7 +110,7 @@ def to_semver:
 # remove the nested release group slice from output
 | flatten
 
-# ensure that [$input.additional_releases] additions doesn't duplicate existing entries
+# ensure that [$config.additional_releases] additions doesn't duplicate existing entries
 | unique
 
 # sort each release group by semver semantics and not numberically or by string

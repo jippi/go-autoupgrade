@@ -16,7 +16,7 @@ fi
 
 # extract go runtimes
 echo "=> Generate ${filename}"
-jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee $filename
+jq -r --argjson config "$(cat config.json)" "$(cat update.jq)" releases.json | tee $filename
 
 echo "=> Check for updates"
 if git diff-index --quiet HEAD $filename
