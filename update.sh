@@ -30,7 +30,7 @@ git commit \
 echo "=> Push changes"
 git push \
     -u origin \
-    main:$(date +%Y%m%d-%H%M)
+    main:$(date +%Y%m%d-%H%M) \
     -o merge_request.create \
     -o merge_request.merge_when_pipeline_succeeds \
     -o merge_request.remove_source_branch \
