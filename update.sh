@@ -35,6 +35,7 @@ git commit \
 
 echo "=> Push changes"
 git push \
+    -f \
     -u origin \
     $(date +%Y%m%d-%H%M) \
     -o merge_request.create \
