@@ -24,7 +24,7 @@ then
 fi
 
 echo "=> Detected change!"
-git diff $filename
+git diff $filename | tee
 
 echo "=> Commit changes"
 git commit \
