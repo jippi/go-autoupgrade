@@ -24,8 +24,8 @@ fi
 
 echo "=> Commit changes"
 git commit \
-    -a \
-    -m "update go versions"
+    -m "update go versions" \
+    runtimes.txt
 
 echo "=> Push changes"
 git push \
