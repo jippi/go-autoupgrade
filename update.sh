@@ -24,7 +24,7 @@ then
 fi
 
 echo "=> Detected change!"
-git diff --no-pager $filename
+git --no-pager diff $filename
 
 echo "=> Commit changes"
 git commit \
