@@ -16,9 +16,13 @@ fi
 
 echo "found changes"
 git commit \
+    -a \
+    -m "update go versions"
+
+git push \
+    -u origin \
+    $(date +%Y%m%d-%H%M)
     -o merge_request.create \
     -o merge_request.merge_when_pipeline_succeeds \
     -o merge_request.remove_source_branch \
-    -o merge_request.label=automatic-upgrade \
-    -a \
-    -m "update go versions"
+    -o merge_request.label=automatic-upgrade
