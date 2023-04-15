@@ -19,7 +19,7 @@ echo "=> Generate ${filename}"
 jq -r --argjson config "$(cat config.json)" "$(cat update.jq)" releases.json | tee $filename
 
 echo "=> Check for updates"
-if [[ git status --porcelain ]]; then
+if git status --porcelain
 then
     echo "no changes, good"
     exit 1
