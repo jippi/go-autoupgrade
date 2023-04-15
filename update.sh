@@ -18,7 +18,7 @@ fi
 
 # extract go runtimes
 echo "=> Generate ${filename}"
-jq -r --argjson config "$(cat config.json)" "$(cat update.jq)" releases.json | tee $filename
+jq -r --argjson config "$(cat config.json)" -f update.jq releases.json | tee $filename
 echo
 
 echo "=> Check for updates"
