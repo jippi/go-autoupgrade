@@ -1,0 +1,4 @@
+-o merge_request.create
+-o merge_request.merge_when_pipeline_succeeds
+-o merge_request.remove_source_branch
+-o merge_request.label=automatic-upgrade
