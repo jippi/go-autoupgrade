@@ -1,5 +1,6 @@
 #!/bin/bash
 
+filename="runtimes.txt"
 branch_name=$(date +%Y%m%d-%H%M)
 
 echo "=> Change branch to ${branch_name}"
@@ -12,23 +13,23 @@ then
 fi
 
 # extract go runtimes
-echo "=> Generate runtimes.txt"
-jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee runtimes.txt
+echo "=> Generate ${filename}"
+jq -r --argjson input "$(cat args.json)" "$(cat update.jq)" releases.json | tee $filename
 
 echo "=> Check for updates"
-if git diff-index --quiet HEAD runtimes.txt
+if git diff-index --quiet HEAD $filename
 then
     echo "no changes, good"
     exit 1
 fi
 
 echo "=> Detected change!"
-git diff runtimes.txt
+git diff $filename
 
 echo "=> Commit changes"
 git commit \
     -m "update go versions" \
-    runtimes.txt
+    $filename
 
 echo "=> Push changes"
 git push \
